@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Opens the configured OpenJanela URL in a new tab. The URL lives in
+             ir.config_parameter so admins can point the menu at their own
+             self-hosted server (Settings > General Settings > OpenJanela). -->
+        <record id="action_openjanela_launch" model="ir.actions.server">
+            <field name="name">Open OpenJanela</field>
+            <field name="model_id" ref="base.model_ir_config_parameter"/>
+            <field name="state">code</field>
+            <field name="code">action = {
+    'type': 'ir.actions.act_url',
+    'url': env['ir.config_parameter'].sudo().get_param('openjanela.url', 'https://openjanelaerp.com'),
+    'target': 'new',
+}</field>
+        </record>
+
+        <record id="action_openjanela_connect" model="ir.actions.act_url">
+            <field name="name">Connect OpenJanela to Odoo</field>
+            <field name="url">https://openjanelaerp.com/openjanela-for-odoo</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_openjanela_root"
+                  name="OpenJanela"
+                  action="action_openjanela_launch"
+                  sequence="65"
+                  web_icon="openjanela,static/description/icon.png"/>
+
+        <menuitem id="menu_openjanela_connect"
+                  name="Connect OpenJanela to Odoo"
+                  parent="menu_openjanela_root"
+                  sequence="10"
+                  action="action_openjanela_connect"/>
+    </data>
+</odoo>

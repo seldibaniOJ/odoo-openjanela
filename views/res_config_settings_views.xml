@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_openjanela" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.openjanela</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="OpenJanela" name="openjanela">
+                    <setting string="OpenJanela URL"
+                             help="Address of your OpenJanela server (hosted or self-hosted). The OpenJanela app menu opens this address in a new tab. The full Odoo integration is configured from the OpenJanela side - see the Connect OpenJanela to Odoo menu.">
+                        <field name="openjanela_url"/>
+                    </setting>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
